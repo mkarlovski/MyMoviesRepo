@@ -1,0 +1,18 @@
+﻿@model MyMovies.Models.Movie;
+
+@{ 
+    Layout = "_Layout";
+}
+
+<img src="@Model.ImageURL">
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+
+<h2>Movie cast</h2>
+<ol>
+    @foreach (var cast in Model.Cast)
+    {
+        <li>@cast</li>
+    }
+</ol>
+
