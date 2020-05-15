@@ -1,4 +1,11 @@
-﻿
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{ 
+    var homeActive=ViewBag.Title=="Index" ? "active" : ""; //if else vo eden red   isto so if(ViewBag.Title=="Home"){homeActive="active"}
+    var aboutUsActive=ViewBag.Title=="AboutUs" ? "active" : "";
+    var ContactUsActive=ViewBag.Title=="Contact Us" ? "active" : "";
+    var CreateActive=ViewBag.Title=="Create" ? "active" : "";
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +17,24 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/Movies/Overview">My Movies</a>
+        <a class="navbar-brand" asp-controller="Movies" asp-action="Overview">My Movies</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="/Movies/Overview">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item" @homeActive>
+                    <a class="nav-link" asp-controller="Movies" asp-action="Overview">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Info/AboutUs">About Us</a>
+                <li class="nav-item" @aboutUsActive>
+                    <a class="nav-link" asp-controller="Info" asp-action="AboutUs">About Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Info/ContactUs">Contact Us</a>
+                <li class="nav-item" @ContactUsActive>
+                    <a class="nav-link" asp-controller="Info" asp-action="ContactUs">Contact Us</a>
                 </li>
-
+                <li class="nav-item" @CreateActive>
+                    <a class="nav-link" asp-controller="Movies" asp-action="Create">Add Movie</a>
+                </li>
             </ul>
         </div>
     </nav>

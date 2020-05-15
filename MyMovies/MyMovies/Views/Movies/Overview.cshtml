@@ -3,7 +3,7 @@
 
 @{ 
     Layout = "_Layout";
-    ViewBag.Title = "Index ";
+    ViewBag.Title = "Index";
 }
 
         
@@ -17,7 +17,8 @@
                         <div class="card-body">
                             <h5 class="card-title">@movie.Title</h5>
                             <p class="card-text">@movie.Description</p>
-                            <a href="/Movies/Details/@movie.ID" class="btn btn-primary">See more</a>
+                            <a href="/Movies/Details/@movie.ID" class="btn btn-primary">See more</a>     
+                                                            @*so ovoj del mu prakjame ID na controllerot  *@
                         </div>
                     </div>
                 </div>

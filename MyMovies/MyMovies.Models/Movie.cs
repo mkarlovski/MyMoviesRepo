@@ -9,6 +9,7 @@ namespace MyMovies.Models
         public string Title { get; set; }
         public string ImageURL { get; set; }
         public string Description { get; set; }
-        public List<string> Cast { get; set; }
+        public string Cast { get; set; }
+        //public List<string> Cast { get; set; }
     }
 }
