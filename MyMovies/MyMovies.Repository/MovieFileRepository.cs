@@ -28,7 +28,16 @@ namespace MyMovies.Repository
             return Movies.FirstOrDefault(x=>x.ID==id);
         }
 
-        
+        public void Add(Movie movie)
+        {
+            var movies = GetAll();
+            var maxId = movies.Max(x => x.ID);
+
+            movie.ID = maxId + 1;
+            Movies.Add(movie);
+            var json = JsonConvert.SerializeObject(Movies);
+            File.WriteAllText("movies.txt", json);
+        }
     }
 
 }

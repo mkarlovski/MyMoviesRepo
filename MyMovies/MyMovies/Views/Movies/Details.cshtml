@@ -1,6 +1,6 @@
 ﻿@model MyMovies.Models.Movie;
 
-@{ 
+@{
     Layout = "_Layout";
 }
 
@@ -9,10 +9,9 @@
 <p>@Model.Description</p>
 
 <h2>Movie cast</h2>
-<ol>
-    @foreach (var cast in Model.Cast)
-    {
-        <li>@cast</li>
-    }
-</ol>
+<p>@Model.Cast</p>
 
+@*@foreach (var cast in Model.Cast)
+{
+    <li>@cast</li>
+}*@

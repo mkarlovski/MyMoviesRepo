@@ -42,14 +42,22 @@ namespace MyMovies.Controllers
         }
         public IActionResult Create()
         {
-            var movie = new Movie();
+            var movie = new Movie();   //so ova mu kazuvame na view deka moze da raboti so movie model i pomaga za kreiranje na formata
             return View(movie);
         }
         [HttpPost]   //povika sto ceka podatoci
         public IActionResult Create(Movie movie)
         {
             //call service to create add new movie
-            return RedirectToAction("Overview");
+            if (ModelState.IsValid)   //ako site parametri se vneseni na modelot togas ke se kreira nov objekt
+            {
+                MoviesService.CreateMovie(movie);
+                return RedirectToAction("Overview");
+            }
+            else
+            {
+                return View(movie);
+            }
         }
     }
 }

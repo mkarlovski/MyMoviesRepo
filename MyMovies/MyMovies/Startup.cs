@@ -38,7 +38,8 @@ namespace MyMovies
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<IMovieService, MoviesService>();
-            services.AddSingleton<IMovieRepository, MovieRepository>();
+            //services.AddSingleton<IMovieRepository, MovieRepository>();
+            services.AddSingleton<IMovieRepository, MovieSQLRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

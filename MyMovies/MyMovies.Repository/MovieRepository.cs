@@ -60,6 +60,13 @@ namespace MyMovies.Repository
             return Movies.FirstOrDefault(x => x.ID == id);
         }
 
-        
+        public void Add(Movie movie)
+        {
+            var movies = GetAll();
+            var maxId = movies.Max(x => x.ID);
+
+            movie.ID = maxId + 1;  //najdi go najgolemoto id i zgolemi za eden
+            Movies.Add(movie);
+        }
     }
 }
