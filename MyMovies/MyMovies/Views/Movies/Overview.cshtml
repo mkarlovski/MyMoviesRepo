@@ -10,10 +10,10 @@
 <div class="row">
     <form asp-controller="Movies" asp-action="Overview">
         <div class="form-group">
-            <input name="Title" value="" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Search" class="btn btn-primary" />
+            <input name="Title" value="" id="title" class="form-control" placeholder="Search" />
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>  
         </div>
     </form>
 </div>
