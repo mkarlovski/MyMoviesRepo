@@ -11,7 +11,20 @@ namespace MyMovies.Repository
     {
         public void Add(Movie movie)
         {
-            throw new NotImplementedException();
+            using(var cnn= new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))
+            {
+                cnn.Open();
+                var query = @"insert into Movies1(Title, ImageURL,Description,Cast)   
+                    values(@Title,@ImageURL,@Description,@Cast)";  //so prvoto @ mu davame moznost da se pisuva vo povekje redovi
+                var cmd = new SqlCommand(query,cnn);
+                //SQL injection protection
+                cmd.Parameters.AddWithValue("@Title", movie.Title);
+                cmd.Parameters.AddWithValue("@ImageURL", movie.ImageURL);
+                cmd.Parameters.AddWithValue("@Description", movie.Description);
+                cmd.Parameters.AddWithValue("@Cast", movie.Cast);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public List<Movie> GetAll()
