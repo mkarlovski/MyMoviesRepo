@@ -7,13 +7,20 @@
 }
 
 
-<div class="row">
+<div class="row" style="justify-content:flex-end; margin-top:5px;">
     <form asp-controller="Movies" asp-action="Overview">
-        <div class="form-group">
+        @*<div class="form-group">
             <input name="Title" value="" id="title" class="form-control" placeholder="Search" />
             <div class="form-group">
                 <input type="submit" value="Search" class="btn btn-primary" />
-            </div>  
+            </div>
+        </div>*@
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+            <input type="text" name="Title" value="" id="title" class="form-control" placeholder="Search"/>
         </div>
     </form>
 </div>

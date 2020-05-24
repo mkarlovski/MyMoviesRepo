@@ -47,5 +47,10 @@ namespace MyMovies.Services
             MovieRepository.Add(movie);
 
         }
+
+        public List<Movie> GetByTitle(string title)
+        {
+            return MovieSQLRepository.GetByTitle(title);
+        }
     }
 }

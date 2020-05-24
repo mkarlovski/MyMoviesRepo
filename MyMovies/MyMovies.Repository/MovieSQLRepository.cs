@@ -63,7 +63,7 @@ namespace MyMovies.Repository
                 cnn.Open();  //so ova pravime konekcija do bazata
                 /* cnn.Close();*/ //na kraj mora da ja zatvorime konekcijata  dokolku ne koristime using()
                 var query = "select * from Movies1";
-                if (String.IsNullOrEmpty(title))
+                if (!String.IsNullOrEmpty(title))
                 {
                     query = $"{query} where title like @title";
                 }
@@ -71,7 +71,7 @@ namespace MyMovies.Repository
                 var cmd = new SqlCommand(query, cnn);
                 if (!String.IsNullOrEmpty(title))
                 {
-                    cmd.Parameters.AddWithValue(title, $"%{title}%");
+                    cmd.Parameters.AddWithValue("@title", $"%{title}%");
                 }
                 var reader = cmd.ExecuteReader();
 

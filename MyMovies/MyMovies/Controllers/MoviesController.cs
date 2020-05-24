@@ -24,12 +24,12 @@ namespace MyMovies.Controllers
         //    MoviesService = new MoviesService();
         //}
 
-        public IActionResult Overview()
+        public IActionResult Overview(string title)
         {
             //var service = new MoviesService();
             //var movies = service.GetAll();
-
-            var movies = MoviesService.GetAll();
+            var movies = MoviesService.GetByTitle(title);
+            //var movies = MoviesService.GetAll();
             return View(movies);
         }
         public IActionResult Details(int ID)
