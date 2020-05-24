@@ -54,6 +54,43 @@ namespace MyMovies.Repository
             }
         }
 
+        public static List<Movie> GetByTitle(string title)
+        {
+            var result = new List<Movie>();
+
+            using (var cnn = new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))   // konekcija so lokalna baza i windows auth ;so using se otvora nova kolekcija i koga ke zavrsi odma ja zatvara i nemora cnn.Close()
+            {
+                cnn.Open();  //so ova pravime konekcija do bazata
+                /* cnn.Close();*/ //na kraj mora da ja zatvorime konekcijata  dokolku ne koristime using()
+                var query = "select * from Movies1";
+                if (String.IsNullOrEmpty(title))
+                {
+                    query = $"{query} where title like @title";
+                }
+                
+                var cmd = new SqlCommand(query, cnn);
+                if (!String.IsNullOrEmpty(title))
+                {
+                    cmd.Parameters.AddWithValue(title, $"%{title}%");
+                }
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var movie = new Movie();
+                    movie.ID = reader.GetInt32(0);
+                    movie.Title = reader.GetString(1);
+                    movie.ImageURL = reader.GetString(2);
+                    movie.Description = reader.GetString(3);
+                    movie.Cast = reader.GetString(4);
+
+                    result.Add(movie);
+                }
+                return result;
+            }
+
+        }
+
         public Movie GetById(int id)
         {
             Movie result = null;
