@@ -31,7 +31,7 @@
     {
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-                <img src="@movie.ImageURL" style="height:250px" class="card-img-top" alt="...">
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.ID" ><img src="@movie.ImageURL" style="height:250px" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                     <h5 class="card-title">@movie.Title</h5>
                     <p class="card-text">@movie.Description</p>
