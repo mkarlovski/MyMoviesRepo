@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyMovies.Data;
 using MyMovies.Repository;
 using MyMovies.Repository.Interfaces;
 using MyMovies.Services;
@@ -35,11 +37,17 @@ namespace MyMovies
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<MyMoviesDBContext>(options => options.UseSqlServer("Data Source =.\\SQLEXPRESS; Initial Catalog = MyMoviesDB; Integrated Security = true"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IMovieService, MoviesService>();
+            services.AddTransient<IMovieService, MoviesService>();
             //services.AddSingleton<IMovieRepository, MovieRepository>();
-            services.AddSingleton<IMovieRepository, MovieSQLRepository>();
+            //services.AddTransient<IMovieRepository, MovieSQLRepository>();
+            services.AddTransient<IMovieRepository, MovieRepositoryEF>();
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

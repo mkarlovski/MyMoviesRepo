@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyMovies.Models;
+using MyMovies.Data;
+//using MyMovies.Models;
 //using MyMovies.Models;
 
 namespace MyMovies.Controllers

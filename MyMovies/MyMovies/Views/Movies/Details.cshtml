@@ -1,4 +1,5 @@
-﻿@model MyMovies.Models.Movie;
+﻿@*@model MyMovies.Models.Movie;*@
+@model MyMovies.Data.Movies1;
 
 @{
     Layout = "_Layout";
@@ -6,17 +7,20 @@
 
 
 
-    <div id="Detail-Container" style="width:60%; margin:auto; margin-top:30px; ">
-        <img src="@Model.ImageURL" style="width:100%; height:80%; margin:0 auto; ">
-        <h1>@Model.Title</h1>
-        <p>@Model.Description</p>
+<div id="Detail-Container" style="width:60%; margin:auto; margin-top:30px; ">
+    <img src="@Model.ImageUrl" style="width:100%; height:80%; margin:0 auto; ">
+    <h1>@Model.Title</h1>
+    <p>@Model.Description</p>
 
-        <h2>Movie cast</h2>
-        <p>@Model.Cast</p>
-    </div>
+    <h2>Movie cast</h2>
+    <p>@Model.Cast</p>
+
+    <h2>Date Created</h2>
+    <p>@Model.DateCreated</p>
+</div>
 
 
 @*@foreach (var cast in Model.Cast)
-{
-    <li>@cast</li>
-}*@
+    {
+        <li>@cast</li>
+    }*@

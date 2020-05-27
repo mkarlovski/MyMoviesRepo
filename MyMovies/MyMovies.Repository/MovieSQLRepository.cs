@@ -1,4 +1,5 @@
-﻿using MyMovies.Models;
+﻿using MyMovies.Data;
+//using MyMovies.Models;
 using MyMovies.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace MyMovies.Repository
 {
    public class MovieSQLRepository : IMovieRepository
     {
-        public void Add(Movie movie)
+        public void Add(Movies1 movie)
         {
             using(var cnn= new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))
             {
@@ -19,7 +20,7 @@ namespace MyMovies.Repository
                 var cmd = new SqlCommand(query,cnn);
                 //SQL injection protection
                 cmd.Parameters.AddWithValue("@Title", movie.Title);
-                cmd.Parameters.AddWithValue("@ImageURL", movie.ImageURL);
+                cmd.Parameters.AddWithValue("@ImageURL", movie.ImageUrl);
                 cmd.Parameters.AddWithValue("@Description", movie.Description);
                 cmd.Parameters.AddWithValue("@Cast", movie.Cast);
 
@@ -27,9 +28,9 @@ namespace MyMovies.Repository
             }
         }
 
-        public List<Movie> GetAll()
+        public List<Movies1> GetAll()
         {
-            var result = new List<Movie>();
+            var result = new List<Movies1>();
 
             using (var cnn= new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))   // konekcija so lokalna baza i windows auth ;so using se otvora nova kolekcija i koga ke zavrsi odma ja zatvara i nemora cnn.Close()
             {
@@ -41,10 +42,10 @@ namespace MyMovies.Repository
 
                 while (reader.Read())
                 {
-                    var movie = new Movie();
-                    movie.ID = reader.GetInt32(0);
+                    var movie = new Movies1();
+                    movie.Id = reader.GetInt32(0);
                     movie.Title = reader.GetString(1);
-                    movie.ImageURL = reader.GetString(2);
+                    movie.ImageUrl = reader.GetString(2);
                     movie.Description = reader.GetString(3);
                     movie.Cast = reader.GetString(4);
 
@@ -54,9 +55,9 @@ namespace MyMovies.Repository
             }
         }
 
-        public static List<Movie> GetByTitle(string title)
+        public static List<Movies1> GetByTitle(string title)
         {
-            var result = new List<Movie>();
+            var result = new List<Movies1>();
 
             using (var cnn = new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))   // konekcija so lokalna baza i windows auth ;so using se otvora nova kolekcija i koga ke zavrsi odma ja zatvara i nemora cnn.Close()
             {
@@ -77,10 +78,10 @@ namespace MyMovies.Repository
 
                 while (reader.Read())
                 {
-                    var movie = new Movie();
-                    movie.ID = reader.GetInt32(0);
+                    var movie = new Movies1();
+                    movie.Id = reader.GetInt32(0);
                     movie.Title = reader.GetString(1);
-                    movie.ImageURL = reader.GetString(2);
+                    movie.ImageUrl = reader.GetString(2);
                     movie.Description = reader.GetString(3);
                     movie.Cast = reader.GetString(4);
 
@@ -91,9 +92,9 @@ namespace MyMovies.Repository
 
         }
 
-        public Movie GetById(int id)
+        public Movies1 GetById(int id)
         {
-            Movie result = null;
+            Movies1 result = null;
 
             using (var cnn = new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyMoviesDB; Integrated Security=true"))   // konekcija so lokalna baza i windows auth ;so using se otvora nova kolekcija i koga ke zavrsi odma ja zatvara i nemora cnn.Close()
             {
@@ -105,10 +106,10 @@ namespace MyMovies.Repository
 
                 while (reader.Read())
                 {
-                    result = new Movie();
-                    result.ID = reader.GetInt32(0);
+                    result = new Movies1();
+                    result.Id = reader.GetInt32(0);
                     result.Title = reader.GetString(1);
-                    result.ImageURL = reader.GetString(2);
+                    result.ImageUrl = reader.GetString(2);
                     result.Description = reader.GetString(3);
                     result.Cast = reader.GetString(4);
                 

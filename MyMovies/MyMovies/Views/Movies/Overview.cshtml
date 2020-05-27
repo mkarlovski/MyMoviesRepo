@@ -1,11 +1,16 @@
 ﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<MyMovies.Models.Movie>;
+@*@model List<MyMovies.Models.Movie>;*@
+@model List<MyMovies.Data.Movies1>;
 
 @{
     Layout = "_Layout";
     ViewBag.Title = "Index";
 }
 
+@if (@Model.Count == 0)
+{
+    <p>No results found</p>
+}
 
 <div class="row" style="justify-content:flex-end; margin-top:5px;">
     <form asp-controller="Movies" asp-action="Overview">
@@ -13,7 +18,7 @@
             <div class="input-group-prepend">
                 <input type="submit" value="Search" class="btn btn-primary" />
             </div>
-            <input type="text" name="Title" value="" id="title" class="form-control" placeholder="Search"/>
+            <input type="text" name="Title" value="" id="title" class="form-control" placeholder="Search" />
         </div>
     </form>
 </div>
@@ -23,13 +28,13 @@
     {
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.ID" ><img src="@movie.ImageURL" style="height:250px" class="card-img-top" alt="..."></a>
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><img src="@movie.ImageUrl" style="height:250px" class="card-img-top" alt="..."></a>
                 <div class="card-body">
                     <h5 class="card-title">@movie.Title</h5>
                     <p class="card-text">@movie.Description</p>
                     @*<a href="/Movies/Details/@movie.ID" class="btn btn-primary">See more</a>*@      @*asp-controller="Movies"  asp-route-id="@movie.ID"*@
                     @*so ovoj del mu prakjame ID na controllerot  *@
-                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.ID" class="btn btn-primary">See more</a>
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-primary">See more</a>
                 </div>
             </div>
         </div>
