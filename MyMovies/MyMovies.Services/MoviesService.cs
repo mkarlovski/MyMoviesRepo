@@ -20,7 +20,7 @@ namespace MyMovies.Services
             //MovieRepository = new MovieRepository();
         }
 
-        public List<Movies1> GetAll()
+        public List<Movie> GetAll()
         {
             //var movieRepository = new MovieRepository();
             //var movies = movieRepository.GetAll();
@@ -30,7 +30,7 @@ namespace MyMovies.Services
 
         }
 
-        public Movies1 GetById(int id)
+        public Movie GetById(int id)
         {
             //var movieRepository = new MovieRepository();
             //var movie = movieRepository.GetById(id);
@@ -38,7 +38,15 @@ namespace MyMovies.Services
             return movie;
         }
 
-        public void CreateMovie(Movies1 movie)
+        public Movie GetMovieDetails(int id)
+        {
+            var movie = MovieRepository.GetById(id);
+            movie.Views += 1;
+            MovieRepository.Update(movie);
+            return movie;
+        }
+
+        public void CreateMovie(Movie movie)
         {
             //get all movies
             //get max id
@@ -49,9 +57,9 @@ namespace MyMovies.Services
 
         }
 
-        public List<Movies1> GetByTitle(string title)
+        public List<Movie> GetByTitle(string title)
         {
-            return MovieSQLRepository.GetByTitle(title);
+            return MovieRepository.GetByTitle(title);
         }
     }
 }

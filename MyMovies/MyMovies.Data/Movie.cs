@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMovies.Data
 {
-    public partial class Movies1
+    public partial class Movie
     {
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
-        [Column("ImageURL")]
+        //[Column("ImageURL")]
         public string ImageUrl { get; set; }
         [Required]
         public string Description { get; set; }
@@ -19,5 +19,6 @@ namespace MyMovies.Data
         public string Cast { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DateCreated { get; set; }
+        public int Views { get; set; }
     }
 }

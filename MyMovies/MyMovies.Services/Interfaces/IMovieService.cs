@@ -8,9 +8,10 @@ namespace MyMovies.Services.Interfaces
 {
    public interface IMovieService
     {
-        List<Movies1> GetAll();
-        Movies1 GetById(int id);
-        void CreateMovie(Movies1 movie);
-        List<Movies1> GetByTitle(string title);
+        List<Movie> GetAll();
+        Movie GetById(int id);
+        void CreateMovie(Movie movie);
+        List<Movie> GetByTitle(string title);
+        Movie GetMovieDetails(int iD);
     }
 }

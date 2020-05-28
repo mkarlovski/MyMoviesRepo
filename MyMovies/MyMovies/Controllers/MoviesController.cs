@@ -37,16 +37,17 @@ namespace MyMovies.Controllers
             //var service = new MoviesService();
             //var movie = service.GetById(ID);
 
-            var movie = MoviesService.GetById(ID);
+            //var movie = MoviesService.GetById(ID);
+            var movie = MoviesService.GetMovieDetails(ID);
             return View(movie);
         }
         public IActionResult Create()
         {
-            var movie = new Movies1();   //so ova mu kazuvame na view deka moze da raboti so movie model i pomaga za kreiranje na formata
+            var movie = new Movie();   //so ova mu kazuvame na view deka moze da raboti so movie model i pomaga za kreiranje na formata
             return View(movie);
         }
         [HttpPost]   //povika sto ceka podatoci
-        public IActionResult Create(Movies1 movie)
+        public IActionResult Create(Movie movie)
         {
             //call service to create add new movie
             if (ModelState.IsValid)   //ako site parametri se vneseni na modelot togas ke se kreira nov objekt

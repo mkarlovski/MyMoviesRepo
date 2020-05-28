@@ -8,10 +8,12 @@ namespace MyMovies.Repository.Interfaces
 {
     public interface IMovieRepository
     {
-        List<Movies1> GetAll();
+        List<Movie> GetAll();
 
-        Movies1 GetById(int id);
-        void Add(Movies1 movie);
-        //List<Movies1> GetByTitle(string title);
+        Movie GetById(int id);
+        void Add(Movie movie);
+        List<Movie> GetByTitle(string title);
+        void Update(Movie movie);
+       
     }
 }

@@ -1,4 +1,5 @@
-﻿using MyMovies.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.Data;
 //using MyMovies.Models;
 using MyMovies.Repository.Interfaces;
 using System;
@@ -16,26 +17,26 @@ namespace MyMovies.Repository
             Context = context;
         }
         
-        public void Add(Movies1 movie)
+        public void Add(Movie movie)
         {
             movie.DateCreated = DateTime.Now;
-            Context.Movies1.Add(movie);
+            Context.Movies.Add(movie);
             Context.SaveChanges();
         }
 
-        public List<Movies1> GetAll()
+        public List<Movie> GetAll()
         {
-            return Context.Movies1.ToList();
+            return Context.Movies.ToList();
         }
 
-        public Movies1 GetById(int id)
+        public Movie GetById(int id)
         {
-            return Context.Movies1.FirstOrDefault(x => x.Id == id);
+            return Context.Movies.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Movies1> GetByTitle(string title)
+        public List<Movie> GetByTitle(string title)
         {
-            var movies = Context.Movies1.AsQueryable();
+            var movies = Context.Movies.AsQueryable();
             if (!string.IsNullOrEmpty(title))
             {
                 movies = movies.Where(x => x.Title.Contains(title));
@@ -43,6 +44,11 @@ namespace MyMovies.Repository
             return movies.ToList();
         }
 
+        public void Update(Movie movie)
+        {
+            Context.Entry<Movie>(movie).State = EntityState.Modified;
+            Context.SaveChanges();
+        }
 
     }
 }
