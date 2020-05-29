@@ -1,6 +1,8 @@
 ﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-@*@model List<MyMovies.Models.Movie>;*@
-@model List<MyMovies.Data.Movie>;
+
+@*@model List<MyMovies.Data.Movie>;*@
+
+@model List<MyMovies.ViewModels.OverviewViewModel>;
 
 @{
     Layout = "_Layout";
@@ -32,6 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@movie.Title</h5>
                     <p class="card-text">@movie.Description</p>
+                    <p class="card-text">Date Created: @movie.DaysCreated days ago</p>
                     @*<a href="/Movies/Details/@movie.ID" class="btn btn-primary">See more</a>*@      @*asp-controller="Movies"  asp-route-id="@movie.ID"*@
                     @*so ovoj del mu prakjame ID na controllerot  *@
                     <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-primary">See more</a>

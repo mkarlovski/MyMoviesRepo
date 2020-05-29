@@ -7,6 +7,7 @@ using MyMovies.Data;
 //using MyMovies.Models;
 using MyMovies.Services;
 using MyMovies.Services.Interfaces;
+using MyMovies.ViewModels;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyMovies.Controllers
@@ -26,18 +27,31 @@ namespace MyMovies.Controllers
 
         public IActionResult Overview(string title)
         {
-            //var service = new MoviesService();
-            //var movies = service.GetAll();
+            
             var movies = MoviesService.GetByTitle(title);
-            //var movies = MoviesService.GetAll();
-            return View(movies);
+
+            var overviewViewModels = new List<OverviewViewModel>();
+
+            foreach(var movie in movies)
+            {
+                var viewModel = new OverviewViewModel()
+                {
+                    Id = movie.Id,
+                    Title=movie.Title,
+                    ImageUrl=movie.ImageUrl,
+                    Description=movie.Description,
+                    DaysCreated = DateTime.Now.Subtract(movie.DateCreated.Value).Days
+
+                };
+                overviewViewModels.Add(viewModel);                
+            }
+
+            return View(overviewViewModels);
+            //return View(movies);
         }
         public IActionResult Details(int ID)
         {
-            //var service = new MoviesService();
-            //var movie = service.GetById(ID);
-
-            //var movie = MoviesService.GetById(ID);
+           
             var movie = MoviesService.GetMovieDetails(ID);
             return View(movie);
         }
