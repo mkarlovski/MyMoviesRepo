@@ -46,9 +46,21 @@ namespace MyMovies.Repository
 
         public void Update(Movie movie)
         {
-            Context.Entry<Movie>(movie).State = EntityState.Modified;
+            Context.Movies.Update(movie);
+            //Context.Entry<Movie>(movie).State = EntityState.Modified;
             Context.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            var movie = new Movie()       //so ova skratuvame eden povik do baza zosto mu kazuvame direktno koj movie da go izbrise spored ID
+            {
+                Id = id
+            };
+            Context.Movies.Remove(movie);
+            Context.SaveChanges();
+        }
+
+       
     }
 }

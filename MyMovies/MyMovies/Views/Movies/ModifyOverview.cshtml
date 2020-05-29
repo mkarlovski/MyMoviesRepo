@@ -1,0 +1,29 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<MyMovies.Data.Movie>;
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "ModifyOverview";
+}
+
+
+<div class="form-group">
+    <a class="btn btn-primary" asp-controller="Movies" asp-action="Create">Add new recipe</a>
+</div>
+
+<table class="table" style="margin-top:20px;">
+    <thead>
+        <tr>
+            <td>Recipe</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in @Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td><a asp-controller="Movies" asp-action="Modify" asp-route-id="@movie.Id"> Modify</a> | <a asp-controller="Movies" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

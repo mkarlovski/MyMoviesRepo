@@ -53,12 +53,47 @@ namespace MyMovies.Controllers
             if (ModelState.IsValid)   //ako site parametri se vneseni na modelot togas ke se kreira nov objekt
             {
                 MoviesService.CreateMovie(movie);
-                return RedirectToAction("Overview");
+                return RedirectToAction("ModifyOverview");
             }
             else
             {
                 return View(movie);
             }
+        }
+
+        public IActionResult ModifyOverview()
+        {
+            var movies = MoviesService.GetAll();
+            return View(movies);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            //logic to delete movie
+            MoviesService.Delete(id);
+            return RedirectToAction("ModifyOverview");
+        }
+
+        public IActionResult Modify(int id)
+        {
+            var movie = MoviesService.GetById(id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Modify(Movie movie)
+        {
+            //logic for update
+            if (ModelState.IsValid)
+            {
+                MoviesService.UpdateMovie(movie);
+                return RedirectToAction("ModifyOverview");
+            }
+            else
+            {
+                return View(movie);
+            }
+            
         }
     }
 }

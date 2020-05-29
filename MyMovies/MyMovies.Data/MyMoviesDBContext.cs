@@ -7,7 +7,7 @@ namespace MyMovies.Data
 {
     public class MyMoviesDBContext :DbContext
     {
-        public MyMoviesDBContext(DbContextOptions<MyMoviesDBContext> options) : base(options)
+        public MyMoviesDBContext(DbContextOptions<MyMoviesDBContext> options) : base(options)  //constructor
         {
 
         }

@@ -54,12 +54,21 @@ namespace MyMovies.Services
             //add new id to new recipe
             //add recipe in db
             MovieRepository.Add(movie);
-
         }
 
         public List<Movie> GetByTitle(string title)
         {
             return MovieRepository.GetByTitle(title);
+        }
+
+        public void Delete(int id)
+        {
+            MovieRepository.Delete(id);
+        }
+
+        public void UpdateMovie(Movie movie)
+        {
+            MovieRepository.Update(movie);
         }
     }
 }
