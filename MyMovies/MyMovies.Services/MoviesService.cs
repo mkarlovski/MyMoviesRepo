@@ -48,11 +48,7 @@ namespace MyMovies.Services
 
         public void CreateMovie(Movie movie)
         {
-            //get all movies
-            //get max id
-            //generate new id=max id+1
-            //add new id to new recipe
-            //add recipe in db
+          
             MovieRepository.Add(movie);
         }
 
