@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Data;
+using MyMovies.Helpers;
 //using MyMovies.Models;
 using MyMovies.Services;
 using MyMovies.Services.Interfaces;
@@ -29,22 +30,22 @@ namespace MyMovies.Controllers
         {
             
             var movies = MoviesService.GetByTitle(title);
+            var overviewViewModels = movies.Select(x => ModelConverter.ConvertToOverviewModel(x)).ToList();
+            //var overviewViewModels = new List<OverviewViewModel>();
 
-            var overviewViewModels = new List<OverviewViewModel>();
+            //foreach(var movie in movies)
+            //{
+            //    var viewModel = new OverviewViewModel()
+            //    {
+            //        Id = movie.Id,
+            //        Title=movie.Title,
+            //        ImageUrl=movie.ImageUrl,
+            //        Description=movie.Description,
+            //        DaysCreated = DateTime.Now.Subtract(movie.DateCreated.Value).Days
 
-            foreach(var movie in movies)
-            {
-                var viewModel = new OverviewViewModel()
-                {
-                    Id = movie.Id,
-                    Title=movie.Title,
-                    ImageUrl=movie.ImageUrl,
-                    Description=movie.Description,
-                    DaysCreated = DateTime.Now.Subtract(movie.DateCreated.Value).Days
-
-                };
-                overviewViewModels.Add(viewModel);                
-            }
+            //    };
+            //    overviewViewModels.Add(viewModel);                
+            //}
 
             return View(overviewViewModels);
             //return View(movies);
@@ -106,8 +107,7 @@ namespace MyMovies.Controllers
             else
             {
                 return View(movie);
-            }
-            
+            }           
         }
     }
 }

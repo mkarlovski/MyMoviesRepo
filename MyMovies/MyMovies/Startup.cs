@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,11 +40,21 @@ namespace MyMovies
 
             services.AddDbContext<MyMoviesDBContext>(options => options.UseSqlServer("Data Source =.\\SQLEXPRESS; Initial Catalog = MyMoviesDB; Integrated Security = true"));
 
+            services.AddAuthentication(options=> {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options=> {
+                options.LoginPath = "./auth/signin";
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IMovieService, MoviesService>();
+            services.AddTransient<IAuthService, AuthService>();
             //services.AddSingleton<IMovieRepository, MovieRepository>();
             //services.AddTransient<IMovieRepository, MovieSQLRepository>();
             services.AddTransient<IMovieRepository, MovieRepositoryEF>();
+            services.AddTransient<IUserRepository, UsersRepository>();
 
 
 
@@ -68,6 +79,8 @@ namespace MyMovies
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseAuthentication();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

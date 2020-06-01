@@ -3,7 +3,7 @@
     var homeActive=ViewBag.Title=="Index" ? "active" : ""; //if else vo eden red   isto so if(ViewBag.Title=="Home"){homeActive="active"}
     var aboutUsActive=ViewBag.Title=="AboutUs" ? "active" : "";
     var ContactUsActive=ViewBag.Title=="Contact Us" ? "active" : "";
-    var CreateActive=ViewBag.Title=="Create" ? "active" : "";
+    var modifyIsActive=ViewBag.Title=="ModifyOverview" ? "active" : "";
 }
 
 <!DOCTYPE html>
@@ -32,8 +32,11 @@
                 <li class="nav-item" @ContactUsActive>
                     <a class="nav-link" asp-controller="Info" asp-action="ContactUs">Contact Us</a>
                 </li>
-                <li class="nav-item" @CreateActive>
+                <li class="nav-item" @modifyIsActive>
                     <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify movie</a>
+                </li>
+                <li class="nav-item @modifyIsActive">
+                    <a class="nav-link" asp-controller="Auth" asp-action="SignIn">Sign In</a>
                 </li>
             </ul>
         </div>
