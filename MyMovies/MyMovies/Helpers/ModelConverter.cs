@@ -22,5 +22,45 @@ namespace MyMovies.Helpers
 
             return overviewModel;
         }
+
+        public static MovieDetailsModel ConvertToMovieDetailsModel(Movie movie)
+        {
+            return new MovieDetailsModel
+            {
+                Id=movie.Id,
+                Title=movie.Title,
+                ImageUrl=movie.ImageUrl,
+                Description=movie.Description,
+                Cast=movie.Cast,
+                DateCreated=movie.DateCreated,
+                Views=movie.Views
+            };
+        }
+
+        public static ModifyOverviewModel ConvertToModifyOverviewModel(Movie x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Movie ConvertFromCreateModel(MovieCreateModel createMovie)
+        {
+            return new Movie
+           {
+               Title=createMovie.Title,
+               ImageUrl=createMovie.ImageUrl,
+               Description=createMovie.Description,
+               Cast=createMovie.Cast
+           };
+        }
+
+        internal static object ConvertFromMovieModify(MovieModifyModel modifyMovie)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object ConvertToMovieModify(Movie movie)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

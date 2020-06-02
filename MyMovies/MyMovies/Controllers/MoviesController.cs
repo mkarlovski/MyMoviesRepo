@@ -54,31 +54,35 @@ namespace MyMovies.Controllers
         {
            
             var movie = MoviesService.GetMovieDetails(ID);
+            var movieDetails = ModelConverter.ConvertToMovieDetailsModel(movie);
             return View(movie);
         }
         public IActionResult Create()
         {
-            var movie = new Movie();   //so ova mu kazuvame na view deka moze da raboti so movie model i pomaga za kreiranje na formata
+            //var movie = new Movie();   //so ova mu kazuvame na view deka moze da raboti so movie model i pomaga za kreiranje na formata
+            var movie = new MovieCreateModel();
             return View(movie);
         }
         [HttpPost]   //povika sto ceka podatoci
-        public IActionResult Create(Movie movie)
+        public IActionResult Create(MovieCreateModel createMovie)
         {
             //call service to create add new movie
             if (ModelState.IsValid)   //ako site parametri se vneseni na modelot togas ke se kreira nov objekt
             {
+                var movie = ModelConverter.ConvertFromCreateModel(createMovie);
                 MoviesService.CreateMovie(movie);
                 return RedirectToAction("ModifyOverview");
             }
             else
             {
-                return View(movie);
+                return View(createMovie);
             }
         }
 
         public IActionResult ModifyOverview()
         {
             var movies = MoviesService.GetAll();
+            var modifyOverviewModels = movies.Select(x => ModelConverter.ConvertToModifyOverviewModel(x)).ToList();
             return View(movies);
         }
 
@@ -92,21 +96,23 @@ namespace MyMovies.Controllers
         public IActionResult Modify(int id)
         {
             var movie = MoviesService.GetById(id);
+            var movieModify = ModelConverter.ConvertToMovieModify(movie);
             return View(movie);
         }
 
         [HttpPost]
-        public IActionResult Modify(Movie movie)
+        public IActionResult Modify(MovieModifyModel modifyMovie)
         {
             //logic for update
             if (ModelState.IsValid)
             {
+                var movie = ModelConverter.ConvertFromMovieModify(modifyMovie);
                 MoviesService.UpdateMovie(movie);
                 return RedirectToAction("ModifyOverview");
             }
             else
             {
-                return View(movie);
+                return View(modifyMovie);
             }           
         }
     }
