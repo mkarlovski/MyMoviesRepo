@@ -37,9 +37,13 @@ namespace MyMovies.Helpers
             };
         }
 
-        public static ModifyOverviewModel ConvertToModifyOverviewModel(Movie x)
+        public static ModifyOverviewModel ConvertToModifyOverviewModel(Movie movie)
         {
-            throw new NotImplementedException();
+            return new ModifyOverviewModel
+            {
+                Id=movie.Id,
+                Title=movie.Title
+            };
         }
 
         public static Movie ConvertFromCreateModel(MovieCreateModel createMovie)
@@ -53,14 +57,32 @@ namespace MyMovies.Helpers
            };
         }
 
-        internal static object ConvertFromMovieModify(MovieModifyModel modifyMovie)
+        public static Movie ConvertFromMovieModify(MovieModifyModel movie)
         {
-            throw new NotImplementedException();
+            return new Movie
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                ImageUrl = movie.ImageUrl,
+                Description = movie.Description,
+                Cast = movie.Cast,
+                DateCreated = movie.DateCreated,
+                Views = movie.Views
+            };
         }
 
-        internal static object ConvertToMovieModify(Movie movie)
+        public static MovieModifyModel ConvertToMovieModify(Movie movie)
         {
-            throw new NotImplementedException();
+            return new MovieModifyModel
+            {
+                Id = movie.Id,
+                Title = movie.Title,
+                ImageUrl = movie.ImageUrl,
+                Description = movie.Description,
+                Cast = movie.Cast,
+                DateCreated = movie.DateCreated,
+                Views = movie.Views
+            };
         }
     }
 }

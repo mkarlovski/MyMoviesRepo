@@ -45,7 +45,7 @@ namespace MyMovies
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options=> {
-                options.LoginPath = "./auth/signin";
+                options.LoginPath = "/auth/signin";
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

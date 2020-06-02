@@ -55,7 +55,7 @@ namespace MyMovies.Controllers
            
             var movie = MoviesService.GetMovieDetails(ID);
             var movieDetails = ModelConverter.ConvertToMovieDetailsModel(movie);
-            return View(movie);
+            return View(movieDetails);
         }
         public IActionResult Create()
         {
@@ -97,7 +97,7 @@ namespace MyMovies.Controllers
         {
             var movie = MoviesService.GetById(id);
             var movieModify = ModelConverter.ConvertToMovieModify(movie);
-            return View(movie);
+            return View(movieModify);
         }
 
         [HttpPost]
