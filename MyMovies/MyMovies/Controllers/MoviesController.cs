@@ -83,7 +83,7 @@ namespace MyMovies.Controllers
         {
             var movies = MoviesService.GetAll();
             var modifyOverviewModels = movies.Select(x => ModelConverter.ConvertToModifyOverviewModel(x)).ToList();
-            return View(movies);
+            return View(modifyOverviewModels);
         }
 
         public IActionResult Delete(int id)
