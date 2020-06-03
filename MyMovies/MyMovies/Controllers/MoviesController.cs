@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Data;
 using MyMovies.Helpers;
@@ -13,6 +14,7 @@ using MyMovies.ViewModels;
 
 namespace MyMovies.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         public IMovieService MoviesService { get; set; }
@@ -26,6 +28,7 @@ namespace MyMovies.Controllers
         //    MoviesService = new MoviesService();
         //}
 
+            [AllowAnonymous]
         public IActionResult Overview(string title)
         {
             
@@ -50,6 +53,7 @@ namespace MyMovies.Controllers
             return View(overviewViewModels);
             //return View(movies);
         }
+        [AllowAnonymous]
         public IActionResult Details(int ID)
         {
            
@@ -79,6 +83,7 @@ namespace MyMovies.Controllers
             }
         }
 
+        
         public IActionResult ModifyOverview()
         {
             var movies = MoviesService.GetAll();

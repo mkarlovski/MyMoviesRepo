@@ -22,14 +22,22 @@ namespace MyMovies.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInModel model)
+        public async Task<IActionResult> SignIn(SignInModel model, string returnUrl=null)
         {
             if (ModelState.IsValid)
             {
                 var isSignedIn=await AuthService.SignInAsync(model.Username, model.Password,HttpContext); //HttpContext si postoi vo Controllerot isto kako i ModelState
                 if (isSignedIn)
                 {
-                    return RedirectToAction("Overview", "Movies");
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Overview", "Movies");
+                    }
+                    
                 }
                 else
                 {
