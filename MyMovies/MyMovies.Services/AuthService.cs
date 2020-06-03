@@ -38,5 +38,12 @@ namespace MyMovies.Services
             }
             return false;
         }
+
+        public async Task SignOutAsync(HttpContext httpContext)
+        {
+            await httpContext.SignOutAsync();
+        }
+
+        
     }
 }

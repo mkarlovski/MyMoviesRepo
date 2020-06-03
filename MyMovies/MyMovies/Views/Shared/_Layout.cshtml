@@ -41,7 +41,7 @@
                         <a class="nav-link" href="/">@User.Identity.Name</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Sign Out</a>
+                        <a class="nav-link" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
                     </li>
                 }
                 else

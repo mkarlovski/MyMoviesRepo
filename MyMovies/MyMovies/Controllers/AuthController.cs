@@ -41,5 +41,13 @@ namespace MyMovies.Controllers
             return View(model);
             
         }
+
+        public async Task<IActionResult> SignOut()
+        {
+            //sign out user
+            await AuthService.SignOutAsync(HttpContext);
+
+            return RedirectToAction("Overview", "Movies");
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace MyMovies
             services.AddTransient<IAuthService, AuthService>();
             //services.AddSingleton<IMovieRepository, MovieRepository>();
             //services.AddTransient<IMovieRepository, MovieSQLRepository>();
+
             services.AddTransient<IMovieRepository, MovieRepositoryEF>();
             services.AddTransient<IUserRepository, UsersRepository>();
 
