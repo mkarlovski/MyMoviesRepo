@@ -10,5 +10,6 @@ namespace MyMovies.Services.Interfaces
     {
         Task<bool> SignInAsync(string Username, string Password,HttpContext httpContext);
         Task SignOutAsync(HttpContext httpContext);
+        bool SignUp(string username, string password);
     }
 }

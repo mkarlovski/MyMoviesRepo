@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using MyMovies.Data;
 using MyMovies.Repository.Interfaces;
 using MyMovies.Services.Interfaces;
 using System;
@@ -44,6 +45,23 @@ namespace MyMovies.Services
             await httpContext.SignOutAsync();
         }
 
-        
+        public bool SignUp(string username, string password)
+        {
+            var user = UsersRepo.GetByUsername(username);
+            if(user == null)
+            {
+                var newUser = new User
+                {
+                    Username = username,
+                    Password = password
+                };
+                UsersRepo.Add(newUser);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -49,5 +49,27 @@ namespace MyMovies.Controllers
 
             return RedirectToAction("Overview", "Movies");
         }
+
+        public IActionResult SignUp()
+        {
+            var signUpModel = new SignUpModel();
+            return View(signUpModel);
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(SignUpModel signUpModel)
+        {
+            if (ModelState.IsValid)
+            { 
+               var status= AuthService.SignUp(signUpModel.Username, signUpModel.Password);
+                if (status)
+                {
+                    return RedirectToAction("SignIn");
+                }
+                
+            }
+            return View(signUpModel);
+            
+        }
     }
 }
