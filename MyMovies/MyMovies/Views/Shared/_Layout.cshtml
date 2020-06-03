@@ -35,6 +35,15 @@
                 <li class="nav-item" @modifyIsActive>
                     <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify movie</a>
                 </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">@User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Sign Out</a>
+                    </li>
+                }
                 <li class="nav-item @modifyIsActive">
                     <a class="nav-link" asp-controller="Auth" asp-action="SignIn">Sign In</a>
                 </li>
