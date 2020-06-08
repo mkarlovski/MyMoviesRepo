@@ -79,5 +79,10 @@ namespace MyMovies.Controllers
             return View(signUpModel);
             
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

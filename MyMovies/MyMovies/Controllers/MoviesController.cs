@@ -14,7 +14,7 @@ using MyMovies.ViewModels;
 
 namespace MyMovies.Controllers
 {
-    [Authorize]
+    [Authorize(Policy ="IsAdmin")]             //so ova se dodava polisa za avtorizacija  
     public class MoviesController : Controller
     {
         public IMovieService MoviesService { get; set; }

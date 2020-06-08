@@ -46,7 +46,12 @@ namespace MyMovies
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options=> {
                 options.LoginPath = "/auth/signin";
+                options.AccessDeniedPath = "/auth/AccessDenied";
             });
+
+            services.AddAuthorization(options => 
+            options.AddPolicy("IsAdmin", policy => policy.RequireClaim("IsAdmin", "True"))
+            );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IMovieService, MoviesService>();

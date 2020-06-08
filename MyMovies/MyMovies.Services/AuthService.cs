@@ -29,7 +29,8 @@ namespace MyMovies.Services
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,user.Username),
-                    new Claim(ClaimTypes.Name,user.Username)
+                    new Claim(ClaimTypes.Name,user.Username),
+                    new Claim("IsAdmin",user.IsAdmin.ToString())
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
