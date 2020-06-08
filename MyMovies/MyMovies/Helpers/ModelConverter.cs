@@ -33,7 +33,19 @@ namespace MyMovies.Helpers
                 Description=movie.Description,
                 Cast=movie.Cast,
                 DateCreated=movie.DateCreated,
-                Views=movie.Views
+                Views=movie.Views,
+                MovieComments=movie.MovieComments.Select(x=>ConvertToMovieCommentModel(x)).ToList()
+
+            };
+        }
+
+        public static MovieCommentModel ConvertToMovieCommentModel(MovieComment movieComment)
+        {
+            return new MovieCommentModel
+            {
+                Comment = movieComment.Comment,
+                DateCreated = movieComment.DateCreated,
+                Username = movieComment.User.Username
             };
         }
 

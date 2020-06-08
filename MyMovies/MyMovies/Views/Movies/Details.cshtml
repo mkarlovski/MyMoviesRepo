@@ -20,6 +20,10 @@
     <p>@Model.DateCreated</p>
 </div>
 
+@foreach(var comment in Model.MovieComments)
+{
+    <p>@comment.Comment - @comment.DateCreated -@comment.Username</p>
+}
 
 @*@foreach (var cast in Model.Cast)
     {
