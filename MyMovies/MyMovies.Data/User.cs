@@ -14,5 +14,6 @@ namespace MyMovies.Data
         public string Password { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
+        public List<MovieComment> MovieComments { get; set; }
     }
 }

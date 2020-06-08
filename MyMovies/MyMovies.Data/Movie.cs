@@ -20,5 +20,6 @@ namespace MyMovies.Data
         [Column(TypeName = "datetime")]
         public DateTime? DateCreated { get; set; }
         public int Views { get; set; }
+        public List<MovieComment> MovieComments { get; set; }
     }
 }
