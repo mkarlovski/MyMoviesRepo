@@ -22,7 +22,7 @@ namespace MyMovies.Services
         public async Task<bool> SignInAsync(string Username, string Password,HttpContext httpContext)
         {
             var user = UsersRepo.GetByUsername(Username);
-            if(user!=null & user.Password == Password)
+            if(user!=null & BCrypt.Net.BCrypt.Verify(Password,user.Password))
             {
                 //sign in user
 
@@ -54,7 +54,7 @@ namespace MyMovies.Services
                 var newUser = new User
                 {
                     Username = username,
-                    Password = password
+                    Password = BCrypt.Net.BCrypt.HashPassword(password)
                 };
                 UsersRepo.Add(newUser);
                 return true;
