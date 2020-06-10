@@ -21,5 +21,12 @@ namespace MyMovies.Controllers
             var modifyUserOverview = users.Select(x => ModelConverter.ConvertToModifyUserOverviewModel(x)).ToList();
             return View(modifyUserOverview);
         }
+
+        [HttpPost]
+        private IActionResult ModifyUser()
+        {
+            return View();
+        }
+
     }
 }
