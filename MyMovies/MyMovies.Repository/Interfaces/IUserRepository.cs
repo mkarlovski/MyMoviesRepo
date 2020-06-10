@@ -9,5 +9,6 @@ namespace MyMovies.Repository.Interfaces
     {
         User GetByUsername(string username);
         void Add(User newUser);
+        List<User> GetAll();
     }
 }

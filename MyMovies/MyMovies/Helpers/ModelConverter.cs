@@ -23,6 +23,15 @@ namespace MyMovies.Helpers
             return overviewModel;
         }
 
+        public static ModifyUserOverviewModel ConvertToModifyUserOverviewModel(User user)
+        {
+            return new ModifyUserOverviewModel
+            {
+                Id = user.Id,
+                Username=user.Username
+            };
+        }
+
         public static MovieDetailsModel ConvertToMovieDetailsModel(Movie movie)
         {
             return new MovieDetailsModel

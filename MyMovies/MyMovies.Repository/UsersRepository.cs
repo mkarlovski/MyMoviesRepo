@@ -24,5 +24,10 @@ namespace MyMovies.Repository
             Context.Users.Add(newUser);
             Context.SaveChanges();
         }
+
+        public List<User> GetAll()
+        {
+            return Context.Users.ToList();
+        }
     }
 }

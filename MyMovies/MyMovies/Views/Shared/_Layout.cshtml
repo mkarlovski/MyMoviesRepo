@@ -41,6 +41,10 @@
                         <li class="nav-item" @modifyIsActive>
                             <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify movie</a>
                         </li>
+                        <li class="nav-item" @modifyIsActive>
+                            <a class="nav-link" asp-controller="Users" asp-action="UsersModifyOverview">Modify users</a>
+                        </li>
+
                     }
                     <li class="nav-item">
                         <a class="nav-link" href="/">@User.Identity.Name</a>
