@@ -1,6 +1,7 @@
 ﻿@*@model MyMovies.Models.Movie;*@
 @*@model MyMovies.Data.Movie;*@
-@model  MyMovies.ViewModels.MovieDetailsModel;
+@model MyMovies.ViewModels.MovieDetailsModel;
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     Layout = "_Layout";
@@ -20,7 +21,19 @@
     <p>@Model.DateCreated</p>
 </div>
 
-@foreach(var comment in Model.MovieComments)
+
+<h3>Comments:</h3>
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-controller="MovieComments" asp-action="Add" method="post">
+        <input id="movieId" name="movieId" value="@Model.Id" hidden />   @*prakjame i ID za da znaeme za koj movie stanuva zbor*@ 
+     <div class="form-group">
+         <textarea id="comment" name="comment" class="form-control"></textarea>
+     </div>
+        <button type="submit" class="btn btn-primary" value="Submit Comment">Submit</button>
+    </form>
+}
+@foreach (var comment in Model.MovieComments)
 {
     <p>@comment.Comment - @comment.DateCreated -@comment.Username</p>
 }

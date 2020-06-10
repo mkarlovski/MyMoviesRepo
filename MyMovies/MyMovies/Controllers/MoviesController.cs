@@ -34,21 +34,8 @@ namespace MyMovies.Controllers
             
             var movies = MoviesService.GetByTitle(title);
             var overviewViewModels = movies.Select(x => ModelConverter.ConvertToOverviewModel(x)).ToList();
-            //var overviewViewModels = new List<OverviewViewModel>();
 
-            //foreach(var movie in movies)
-            //{
-            //    var viewModel = new OverviewViewModel()
-            //    {
-            //        Id = movie.Id,
-            //        Title=movie.Title,
-            //        ImageUrl=movie.ImageUrl,
-            //        Description=movie.Description,
-            //        DaysCreated = DateTime.Now.Subtract(movie.DateCreated.Value).Days
-
-            //    };
-            //    overviewViewModels.Add(viewModel);                
-            //}
+            var sideBarData = MoviesService.GetSidebarData();
 
             return View(overviewViewModels);
             //return View(movies);
