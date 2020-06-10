@@ -31,7 +31,7 @@ namespace MyMovies.Repository
 
         public Movie GetById(int id)
         {
-            return Context.Movies
+            return Context.Movies    //ako vo objektot imame navigational property koristime Include
                 .Include(x=>x.MovieComments)
                     .ThenInclude(x=>x.User)
                         .FirstOrDefault(x => x.Id == id);
