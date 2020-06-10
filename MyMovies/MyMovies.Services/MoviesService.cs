@@ -97,7 +97,7 @@ namespace MyMovies.Services
                 TopMovies=topMovies,
                 RecentMovies=recentMovies
             };
-
+            return sidebarData;
 
         }
     }
