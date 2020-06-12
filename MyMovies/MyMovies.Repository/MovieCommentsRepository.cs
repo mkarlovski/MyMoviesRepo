@@ -1,7 +1,9 @@
-﻿using MyMovies.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.Data;
 using MyMovies.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyMovies.Repository
@@ -18,6 +20,11 @@ namespace MyMovies.Repository
         {
             Context.MovieComments.Add(newComment);
             Context.SaveChanges();
+        }
+
+        public List<MovieComment> GetAll()
+        {
+            return Context.MovieComments.Include(x=>x.Movie).Include(x=>x.User).ToList();
         }
     }
 }

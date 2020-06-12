@@ -24,10 +24,16 @@ namespace MyMovies.Services
                 MovieId=movieId,
                 UserId=userId,
                 Comment=comment,
-                DateCreated=DateTime.Now
+                DateCreated=DateTime.Now,
+                IsApproved=false
             };
             MovieCommentsRepository.Add(newComment);
 
+        }
+
+        public List<MovieComment> GetAll()
+        {
+            return MovieCommentsRepository.GetAll();
         }
     }
 }

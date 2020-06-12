@@ -28,7 +28,9 @@ namespace MyMovies.Helpers
             return new ModifyUserOverviewModel
             {
                 Id = user.Id,
-                Username=user.Username
+                Username=user.Username,
+                IsAdmin=user.IsAdmin
+                
             };
         }
 
@@ -47,13 +49,27 @@ namespace MyMovies.Helpers
             };
         }
 
+        public static MovieCommentApproveModel ConvertToMovieCommentApprove(MovieComment x)
+        {
+            return new MovieCommentApproveModel
+            {
+                Id=x.Id,
+                Username=x.User.Username,
+                Movie=x.Movie.Title,
+                DateCreated=x.DateCreated,
+                Comment=x.Comment,
+                IsApproved=x.IsApproved
+            };
+        }
+
         public static MovieCommentModel ConvertToMovieCommentModel(MovieComment movieComment)
         {
             return new MovieCommentModel
             {
                 Comment = movieComment.Comment,
                 DateCreated = movieComment.DateCreated,
-                Username = movieComment.User.Username
+                Username = movieComment.User.Username,
+                IsApproved=movieComment.IsApproved
             };
         }
 

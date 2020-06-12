@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace MyMovies.ViewModels
 {
-    public class MovieCommentModel
+    public class MovieCommentApproveModel
     {
+        public int Id { get; set; }
+        public string  Username { get; set; }
+        public string Movie { get; set; }
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
-        public string Username { get; set; }
         public bool IsApproved { get; set; }
-
     }
 }

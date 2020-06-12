@@ -8,5 +8,6 @@ namespace MyMovies.Repository.Interfaces
     public interface IMovieCommentRepository
     {
         void Add(MovieComment newComment);
+        List<MovieComment> GetAll();
     }
 }

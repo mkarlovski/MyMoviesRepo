@@ -8,39 +8,60 @@
 }
 
 
-    <div class="row">
-        <div class="col-md-9" id="Detail-Container" style="width:60%; margin:auto; margin-top:30px; ">
-            <img src="@Model.ImageUrl" style="width:100%; height:80%; margin:0 auto; ">
-            <h1>@Model.Title</h1>
-            <p>@Model.Description</p>
+<div class="row">
+    <div class="col-md-9" id="Detail-Container" style="width:60%; margin:auto; margin-top:30px; ">
+        <img src="@Model.ImageUrl" style="width:100%; height:80%; margin:0 auto; ">
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
 
-            <h2>Movie cast</h2>
-            <p>@Model.Cast</p>
+        <h2>Movie cast</h2>
+        <p>@Model.Cast</p>
 
-            <h2>Date Created</h2>
-            <p>@Model.DateCreated</p>
+        <h2>Date Created</h2>
+        <p>@Model.DateCreated</p>
 
 
 
-            <h3>Comments:</h3>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <form asp-controller="MovieComment" asp-action="Add" method="post">
-                    <input id="movieId" name="movieId" value="@Model.Id" hidden />   @*prakjame i ID za da znaeme za koj movie stanuva zbor*@
-                    <div class="form-group">
-                        <textarea id="comment" name="comment" class="form-control"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" value="Submit Comment">Submit</button>
-                </form>
-            }
-            @foreach (var comment in Model.MovieComments)
+        <h3>Comments:</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-controller="MovieComment" asp-action="Add" method="post" onsubmit="return ValidateComment()" ;>
+                @* so ova ke proveruvame dali e prazen komentar ili ne*@
+                <input id="movieId" name="movieId" value="@Model.Id" hidden />   @*prakjame i ID za da znaeme za koj movie stanuva zbor*@
+                <div class="form-group">
+                    <textarea id="comment" name="comment" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Submit Comment">Submit</button>
+            </form>
+        }
+
+
+        @foreach (var comment in Model.MovieComments)
+        {
+            if (comment.IsApproved)
             {
                 <p>@comment.Comment - @comment.DateCreated -@comment.Username</p>
             }
-        </div>
-        <div class="col-md-3">
-            <partial name="SidebarPartial" for="Sidebar" />
-        </div>
+
+        }
     </div>
+    <div class="col-md-3">
+        <partial name="SidebarPartial" for="Sidebar" />
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function ValidateComment() {
+            var comment = document.getElementById("comment").value;
+            if (comment == null || comment == " ") {
+                alert("Please enter comment");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+}
 
 

@@ -11,6 +11,7 @@ namespace MyMovies.Data
         [Required]
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
+        public bool IsApproved { get; set; }
 
         [Required]
         public int MovieId { get; set; }   //ova ni e foreign key vo baza. i spored name znae deka e za movie

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyMovies.Helpers;
 using MyMovies.Services.Interfaces;
 
 namespace MyMovies.Controllers
@@ -26,6 +27,14 @@ namespace MyMovies.Controllers
                 MovieCommentsService.Add(comment, movieId, userId);
             }
             return RedirectToAction("Details", "Movies", new { id = movieId }); //zatoa sto se vrakjame na details a details bara id
+        }
+
+
+        public IActionResult ModifyComments()
+        {
+            var commentsAll = MovieCommentsService.GetAll();
+            var commentsConverted=commentsAll.Select(x=>ModelConverter.ConvertToMovieCommentApprove(x)).ToList();
+            return View(commentsConverted);
         }
     }
 }
