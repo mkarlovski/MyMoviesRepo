@@ -36,5 +36,10 @@ namespace MyMovies.Controllers
             var commentsConverted=commentsAll.Select(x=>ModelConverter.ConvertToMovieCommentApprove(x)).ToList();
             return View(commentsConverted);
         }
+
+        public IActionResult Approve(int id)
+        {
+            return View(id);
+        }
     }
 }
