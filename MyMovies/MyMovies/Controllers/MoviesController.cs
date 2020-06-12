@@ -31,13 +31,16 @@ namespace MyMovies.Controllers
             [AllowAnonymous]
         public IActionResult Overview(string title)
         {
-            
+            var overviewDataModel = new OverviewViewDataModel();
             var movies = MoviesService.GetByTitle(title);
             var overviewViewModels = movies.Select(x => ModelConverter.ConvertToOverviewModel(x)).ToList();
 
             var sideBarData = MoviesService.GetSidebarData();
+            overviewDataModel.Movies = overviewViewModels;
+            overviewDataModel.SidebarData = sideBarData;
 
-            return View(overviewViewModels);
+
+            return View(overviewDataModel);
             //return View(movies);
         }
         [AllowAnonymous]

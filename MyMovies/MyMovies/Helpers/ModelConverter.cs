@@ -44,7 +44,6 @@ namespace MyMovies.Helpers
                 DateCreated=movie.DateCreated,
                 Views=movie.Views,
                 MovieComments=movie.MovieComments.Select(x=>ConvertToMovieCommentModel(x)).ToList()
-
             };
         }
 

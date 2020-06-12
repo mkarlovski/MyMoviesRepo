@@ -25,7 +25,7 @@
 <h3>Comments:</h3>
 @if (User.Identity.IsAuthenticated)
 {
-    <form asp-controller="MovieComments" asp-action="Add" method="post">
+    <form asp-controller="MovieComment" asp-action="Add" method="post">
         <input id="movieId" name="movieId" value="@Model.Id" hidden />   @*prakjame i ID za da znaeme za koj movie stanuva zbor*@ 
      <div class="form-group">
          <textarea id="comment" name="comment" class="form-control"></textarea>
