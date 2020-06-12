@@ -41,14 +41,16 @@ namespace MyMovies.Controllers
 
 
             return View(overviewDataModel);
-            //return View(movies);
+            
         }
         [AllowAnonymous]
         public IActionResult Details(int ID)
         {
            
             var movie = MoviesService.GetMovieDetails(ID);
+            var sidebar = MoviesService.GetSidebarData();
             var movieDetails = ModelConverter.ConvertToMovieDetailsModel(movie);
+            movieDetails.Sidebar = sidebar;
             return View(movieDetails);
         }
         public IActionResult Create()
