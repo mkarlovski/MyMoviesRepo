@@ -49,8 +49,10 @@ namespace MyMovies.Controllers
            
             var movie = MoviesService.GetMovieDetails(ID);
             var sidebar = MoviesService.GetSidebarData();
+
             var movieDetails = ModelConverter.ConvertToMovieDetailsModel(movie);
             movieDetails.Sidebar = sidebar;
+
             return View(movieDetails);
         }
         public IActionResult Create()

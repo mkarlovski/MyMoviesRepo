@@ -62,6 +62,16 @@ namespace MyMovies.Helpers
             };
         }
 
+        public static UserModifyModel ConvertToUserModifyModel(User user)
+        {
+            return new UserModifyModel
+            {
+                Id=user.Id,
+                Username=user.Username,
+                IsAdmin=user.IsAdmin
+            };
+        }
+
         public static MovieCommentModel ConvertToMovieCommentModel(MovieComment movieComment)
         {
             return new MovieCommentModel
@@ -70,6 +80,16 @@ namespace MyMovies.Helpers
                 DateCreated = movieComment.DateCreated,
                 Username = movieComment.User.Username,
                 IsApproved=movieComment.IsApproved
+            };
+        }
+
+        public static User ConvertFromUserModifyModel(UserModifyModel userModifyModel)
+        {
+            return new User
+            {
+                Id=userModifyModel.Id,
+                Username=userModifyModel.Username,
+                IsAdmin=userModifyModel.IsAdmin
             };
         }
 
