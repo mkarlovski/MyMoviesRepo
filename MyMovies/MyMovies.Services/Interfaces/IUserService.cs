@@ -12,5 +12,6 @@ namespace MyMovies.Services.Interfaces
         void Delete(int id);
         User GetById(int id);
         ModifyUserResult ModifyUser(User user);
+        void ChangePassword(int id, string password);
     }
 }

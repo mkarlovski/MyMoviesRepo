@@ -52,5 +52,12 @@ namespace MyMovies.Services
             return result;
 
         }
+
+        public void ChangePassword(int id, string password)
+        {
+            var user = UserRepository.GetById(id);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(password);
+            UserRepository.Update(user);
+        }
     }
 }

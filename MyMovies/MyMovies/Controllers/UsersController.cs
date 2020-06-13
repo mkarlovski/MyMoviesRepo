@@ -88,6 +88,35 @@ namespace MyMovies.Controllers
             return View(userModifyModel);
         }
 
+        public IActionResult ChangePassword(int id)
+        {
+            if (!AuthorizeService.AuthorizeUser(User,id))
+            {
+                return RedirectToAction("AccessDenied", "Auth");
+            }
+            var model = new UserChangePasswordModel
+            {
+                Id=id
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ChangePassword(UserChangePasswordModel userChangePassword)
+        {
+            if(AuthorizeService.AuthorizeUser(User, userChangePassword.Id)) 
+            {
+                return RedirectToAction("AccessDenied", "Auth");
+            }
+            if (ModelState.IsValid)
+            {
+                UserService.ChangePassword(userChangePassword.Id, userChangePassword.Password);
+                return RedirectToAction("SuccessfulUserChange");
+            }
+
+            return View();
+        }
+
 
 
 
