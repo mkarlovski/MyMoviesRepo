@@ -32,7 +32,7 @@ namespace MyMovies.Controllers
         
         public IActionResult Delete(int id)
         {
-            if (!AuthorizeService.AuthorizeUser(User,id))   //ova proveruva dali userot e admin i dali e istion toj user pa da ne se izbrise sam
+            if (!AuthorizeService.AuthorizeUser(User,id))   //ova proveruva dali userot e admin i dali e istiot toj user pa da ne se izbrise sam
             {
                 return RedirectToAction("AccessDenied", "Auth");
             }

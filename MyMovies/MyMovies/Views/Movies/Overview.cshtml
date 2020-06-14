@@ -30,12 +30,12 @@
         <div class="row">
             @foreach (var movie in @Model.Movies)
             {
-                <div class="col-lg-4">
+                <div class="col-lg-4" style="margin-right:10px;">
                     <div class="card" style="width: 18rem;">
                         <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><img src="@movie.ImageUrl" style="height:250px" class="card-img-top" alt="..."></a>
                         <div class="card-body">
                             <h5 class="card-title">@movie.Title</h5>
-                            <p class="card-text">@movie.Description</p>
+                            @*<p class="card-text">@movie.Description</p>*@
                             <p class="card-text">Date Created: @movie.DaysCreated days ago</p>
 
                             <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-primary">See more</a>
