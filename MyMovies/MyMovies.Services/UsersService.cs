@@ -59,5 +59,29 @@ namespace MyMovies.Services
             user.Password = BCrypt.Net.BCrypt.HashPassword(password);
             UserRepository.Update(user);
         }
+
+        public string CreateUser(string username, string password, bool isAdmin)
+        {
+            string message = null;
+
+            var user = UserRepository.GetByUsername(username);
+            if (user == null)
+            {
+                var newUser = new User
+                {
+                    Username=username,
+                    Password=BCrypt.Net.BCrypt.HashPassword(password),
+                    IsAdmin=isAdmin
+                };
+
+                UserRepository.Add(newUser);
+                return message;
+            }
+            else
+            {
+                message = "User already exists";
+                return message;
+            }
+        }
     }
 }

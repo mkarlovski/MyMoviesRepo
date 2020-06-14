@@ -140,5 +140,15 @@ namespace MyMovies.Helpers
                 Views = movie.Views
             };
         }
+
+        public static UserDetailsModel ConvertToUserDetailsModel(User user)
+        {
+            return new UserDetailsModel
+            {
+                Id=user.Id,
+                Username=user.Username,
+                IsAdmin=user.IsAdmin
+            };
+        }
     }
 }

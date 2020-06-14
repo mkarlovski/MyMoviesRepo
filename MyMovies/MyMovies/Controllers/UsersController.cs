@@ -104,7 +104,7 @@ namespace MyMovies.Controllers
         [HttpPost]
         public IActionResult ChangePassword(UserChangePasswordModel userChangePassword)
         {
-            if(AuthorizeService.AuthorizeUser(User, userChangePassword.Id)) 
+            if(!AuthorizeService.AuthorizeUser(User, userChangePassword.Id)) 
             {
                 return RedirectToAction("AccessDenied", "Auth");
             }
@@ -115,6 +115,47 @@ namespace MyMovies.Controllers
             }
 
             return View();
+        }
+
+        [Authorize(Policy ="IsAdmin")]
+        public IActionResult Create()
+        {
+            var user = new CreateUserModel();
+            return View(user);
+        }
+
+        [HttpPost]
+        [Authorize(Policy ="IsAdmin")]
+        public IActionResult Create(CreateUserModel createUserModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var message = UserService.CreateUser(createUserModel.Username, createUserModel.Password, createUserModel.IsAdmin);
+                if (string.IsNullOrEmpty(message))
+                {
+                    return RedirectToAction("SuccessfulUserChange");
+                }
+                else
+                {
+                    ModelState.AddModelError("", message);
+                }
+            }
+            return View(createUserModel);
+
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            if (!AuthorizeService.AuthorizeUser(User,id))
+            {
+                return RedirectToAction("AccessDenied", "Auth");
+            }
+
+            var user = UserService.GetById(id);
+            var viewModel = ModelConverter.ConvertToUserDetailsModel(user);
+                
+            return View(viewModel);
         }
 
 

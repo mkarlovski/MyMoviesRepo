@@ -13,5 +13,6 @@ namespace MyMovies.Services.Interfaces
         User GetById(int id);
         ModifyUserResult ModifyUser(User user);
         void ChangePassword(int id, string password);
+        string CreateUser(string username, string password, bool isAdmin);
     }
 }
