@@ -60,7 +60,6 @@ namespace MyMovies.Controllers
             var user = UserService.GetById(id);
             var modifyUser = ModelConverter.ConvertToUserModifyModel(user);
 
-
             return View(modifyUser);
         }
 
