@@ -6,6 +6,7 @@ namespace MyMovies.Services.Interfaces
 {
    public interface IMovieLikeService
     {
+        void AddLike(int userId, int movieId);
 
     }
 }
