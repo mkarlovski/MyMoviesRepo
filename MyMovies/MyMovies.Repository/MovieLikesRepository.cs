@@ -14,5 +14,11 @@ namespace MyMovies.Repository
         {
             this.context = context;
         }
+
+        public void AddLike(MovieLike like)
+        {
+            context.MovieLikes.Add(like);
+            context.SaveChanges();
+        }
     }
 }

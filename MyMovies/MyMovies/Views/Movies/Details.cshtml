@@ -22,8 +22,8 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <button class="btn btn-success" onclick="MovieLike(@Model.Id)">LIKE</button>
-            <button class="btn btn-danger" onclick="MovieDislike(@Model.Id)">DISLIKE</button>
+            <button class="btn btn-outline-success" onclick="MovieLike(@Model.Id)">LIKE</button>
+            <button class="btn btn-outline-danger" onclick="MovieDislike(@Model.Id)">DISLIKE</button>
         }
         
 

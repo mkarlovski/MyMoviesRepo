@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyMovies.ViewModels
 {
-    public class MovieLikeViewModel
+    public class MovieLikeRequestModel
     {
         public int MovieId { get; set; }
 

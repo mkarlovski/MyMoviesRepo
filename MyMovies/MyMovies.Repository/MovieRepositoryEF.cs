@@ -34,6 +34,7 @@ namespace MyMovies.Repository
             return Context.Movies    //ako vo objektot imame navigational property koristime Include
                 .Include(x=>x.MovieComments)
                     .ThenInclude(x=>x.User)
+                 .Include(x=>x.MovieLikes)
                         .FirstOrDefault(x => x.Id == id);
         }
 

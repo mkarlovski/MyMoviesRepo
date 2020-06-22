@@ -18,7 +18,7 @@ namespace MyMovies.Controllers
             this.movieLikeService = movieLikeService;
         }
 
-        public IActionResult Index([FromBody] MovieLikeViewModel movieLikeViewModel)  //from body zosto od body na http request
+        public IActionResult Index([FromBody] MovieLikeRequestModel movieLikeViewModel)  //from body zosto od body na http request
         {
             var userId = Convert.ToInt32(User.FindFirst("Id").Value);
             movieLikeService.AddLike(userId, movieLikeViewModel.MovieId);

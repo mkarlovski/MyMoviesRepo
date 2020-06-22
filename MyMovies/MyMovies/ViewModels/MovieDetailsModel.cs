@@ -22,5 +22,7 @@ namespace MyMovies.ViewModels
         public int Views { get; set; }
         public List<MovieCommentModel> MovieComments { get; set; }
         public SidebarData Sidebar { get; set; }
+        public List<MovieLikeModel> MovieLikes { get; set; }
+        public bool IsLiked { get; set; }
     }
 }

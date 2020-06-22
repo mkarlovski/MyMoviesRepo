@@ -45,7 +45,20 @@ namespace MyMovies.Helpers
                 Cast=movie.Cast,
                 DateCreated=movie.DateCreated,
                 Views=movie.Views,
-                MovieComments=movie.MovieComments.Select(x=>ConvertToMovieCommentModel(x)).ToList()
+                MovieComments=movie.MovieComments.Select(x=>ConvertToMovieCommentModel(x)).ToList(),
+                MovieLikes=movie.MovieLikes.Select(x=>ConvertToMovieLikesViewModel(x)).ToList()
+            };
+        }
+
+        public static MovieLikeModel ConvertToMovieLikesViewModel(MovieLike x)
+        {
+            return new MovieLikeModel
+            {
+                Id=x.Id,
+                Status=x.Status,
+                DateCreated=x.DateCreated,
+                UserId=x.UserId,
+                MovieId=x.MovieId
             };
         }
 
